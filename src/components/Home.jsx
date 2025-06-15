@@ -1,25 +1,57 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const Home = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    alert(`Lead Submitted: ${JSON.stringify(formData)}`)
-    setFormData({ name: '', email: '', message: '' })
-  }
+  const validateForm = () => {
+    const { name, email, message } = formData;
+
+    if (!name.trim()) return 'Name is required';
+    if (!email.trim()) return 'Email is required';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) return 'Enter a valid email address';
+    if (!message.trim()) return 'Message is required';
+    if (message.length < 10) return 'Message should be at least 10 characters';
+
+    return null;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const error = validateForm();
+    if (error) {
+      toast.error(error);
+      return;
+    }
+
+    try {
+      toast.loading('Sending your message...');
+      await axios.post(`${API_URL}/api/contact`, formData);
+      toast.dismiss();
+      toast.success('Message sent successfully!');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast.dismiss();
+      toast.error('Failed to send message. Please try again.');
+    }
+  };
 
   return (
     <section
-  className="relative h-[100vh] md:min-h-screen flex flex-col md:flex-row justify-between items-center px-6 md:px-30 py-24 bg-cover bg-center bg-fixed bg-no-repeat"
-  style={{
-    backgroundImage: `url('https://res.cloudinary.com/djvcd6qvd/image/upload/v1749999092/ChatGPT_Image_Jun_15_2025_08_20_25_PM_rx0zbf.png')`,
-  }}
->  {/* Overlay */}
+      className="relative h-[100vh] md:min-h-screen flex flex-col md:flex-row justify-between items-center px-6 md:px-30 py-24 bg-cover bg-center bg-fixed bg-no-repeat"
+      style={{
+        backgroundImage: `url('https://res.cloudinary.com/djvcd6qvd/image/upload/v1749999092/ChatGPT_Image_Jun_15_2025_08_20_25_PM_rx0zbf.png')`,
+      }}
+    >
+      <Toaster position="top-center" reverseOrder={false} />
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/50 z-0"></div>
 
       {/* Main Content */}
@@ -72,7 +104,7 @@ const Home = () => {
         </form>
       </section>
     </section>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
