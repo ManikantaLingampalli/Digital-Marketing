@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <section
-  className="relative h-[90vh] md:min-h-screen flex flex-col md:flex-row justify-between items-center px-6 md:px-30 py-16 bg-cover bg-center bg-fixed bg-no-repeat"
+  className="relative h-[100vh] md:min-h-screen flex flex-col md:flex-row justify-between items-center px-6 md:px-30 py-24 bg-cover bg-center bg-fixed bg-no-repeat"
   style={{
     backgroundImage: `url('https://res.cloudinary.com/djvcd6qvd/image/upload/v1749999092/ChatGPT_Image_Jun_15_2025_08_20_25_PM_rx0zbf.png')`,
   }}
@@ -26,7 +26,7 @@ const Home = () => {
       <div className="relative z-10 w-full md:w-1/2 text-white animate-fade-in">
         <h2 className="text-4xl md:text-7xl font-serif font-bold">Digital</h2>
         <h2 className="text-4xl md:text-7xl font-serif font-bold text-orange-500 mt-4">Marketing</h2>
-        <p className="mt-6 max-w-xl md:text-2xl text-gray-200">A new life to your Business</p>
+        <p className="mt-6 max-w-xl md:text-2xl text-gray-200">We Care And Promote Your Business</p>
         <button className="mt-8 px-8 py-3 bg-orange-500 text-black font-bold hover:bg-orange-600 rounded-[0.5vw] transition">
           JOIN US
         </button>

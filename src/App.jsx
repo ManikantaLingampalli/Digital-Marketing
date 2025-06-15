@@ -38,7 +38,7 @@ function App() {
           <Link to="/about" className="text-xl hover:text-orange-400">About</Link>
           <Link to="/services" className="text-xl hover:text-orange-400">Services</Link>
           {/* <Link to="/leads" className="text-xl hover:text-orange-400">Leads</Link> */}
-          <Link to="/contact" className="text-xl hover:text-orange-400">Contact</Link>
+          <Link to="/contact Us" className="text-xl hover:text-orange-400">Contact Us</Link>
         </div>
 
         {/* Mobile Toggle Button */}
@@ -55,7 +55,7 @@ function App() {
             <Link to="/about" onClick={toggleMenu} className="hover:text-orange-400">About</Link>
             <Link to="/services" onClick={toggleMenu} className="hover:text-orange-400">Services</Link>
             {/* <Link to="/leads" onClick={toggleMenu} className="hover:text-orange-400">Leads</Link> */}
-            <Link to="/contact" onClick={toggleMenu} className="hover:text-orange-400">Contact</Link>
+            <Link to="/contact Us" onClick={toggleMenu} className="hover:text-orange-400">Contact Us</Link>
           </div>
         )}
       </nav>
@@ -66,7 +66,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact Us" element={<Contact />} />
         </Routes>
       </div>
 
